@@ -7,11 +7,15 @@ export default function Counter() {
         setCounter(prev => prev + 1);
     }
 
+    //prev => prev is to ensure a full render, otherwise the count will not update until the next click.
+
     function handleDecrement() {
         if (count > 0) {
         setCounter(prev => prev - 1);
         }
     }
+
+    //prevent the count from going below 0
 
     function handleReset() {
         setCounter(0);

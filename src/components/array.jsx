@@ -8,6 +8,8 @@ export default function Users() {
         setUsers([...users, newUser]);
     }
 
+    //stretch means it renders all previous items in the array, not just the new one.
+
     return (
         <div>
             <h1>Users</h1>

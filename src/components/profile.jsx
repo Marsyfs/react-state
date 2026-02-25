@@ -8,11 +8,13 @@ export default function Profile() {
     });
 
     function increaseAge() {
-        setProfile(prev => ({
-            ...prev,
+        setProfile(prevProfile => ({
+            ...prevProfile,
             age: prev.age + 1
         }));
     }
+
+    //...prevProfile is easier to read than prev => ({...prev, age: prev.age + 1}), but they do the same thing.
 
     function changeJob() {
         setProfile(prev => ({
