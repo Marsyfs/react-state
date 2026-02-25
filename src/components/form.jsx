@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 
 export default function Form() {
@@ -7,37 +6,55 @@ export default function Form() {
     age: ""
   });
 
+  const [submittedData, setSubmittedData] = useState(null);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSubmittedData(formData);
+  };
+
   return (
     <>
-      <label>
-        Name:
-        <input
-          value={formData.name}
-          onChange={e => {
-            setFormData({
-              ...formData,
-              name: e.target.value
-            });
-          }}
-        />
-      </label>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Name:
+          <input
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+          />
+        </label>
 
-      <label>
-        Age:
-        <input
-          value={formData.age}
-          onChange={e => {
-            setFormData({
-              ...formData,
-              age: e.target.value
-            });
-          }}
-        />
-      </label>
+        <label>
+          Age:
+          <input
+            name="age"
+            type="number"
+            value={formData.age}
+            onChange={handleChange}
+          />
+        </label>
 
-      <div>
-        {formData.name} {formData.age}
-      </div>
+        <button type="submit">Submit</button>
+      </form>
+
+      {submittedData && (
+        <div>
+          <h3>Submitted Profile:</h3>
+          <p>
+            {submittedData.name} is {submittedData.age} years old
+          </p>
+        </div>
+      )}
     </>
   );
 }
